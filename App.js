@@ -1,6 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, Component } from 'react';
-import { StyleSheet, Text, View, Switch, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Switch, TextInput, Button } from 'react-native';
+
+const listElements = ["Juan"];
 
 export default function App() {
   // Switch Variables.
@@ -9,10 +11,40 @@ export default function App() {
 
   // Text Inputs Variables.
   const [value, onChangeText] = React.useState('Useless Placeholder');
+  const [list, onChangeList] = React.useState(["Juan"]);
+  // Button.
+  
+  const valueButton = () => onChangeList(list => listElements.push(value));
+
+
+  // Array of elements.
+  const Greetings = (props) => {
+    var styleText = styles.textColorRed;
+    if(isEnabled) {
+      var styleText = styles.textColorYellow;
+    }
+    return(
+      <View style={styles.container}>
+        <Text style={styleText}>Bienvenidos a la Clase {AddingText(props.someText)} </Text>
+        <ListPerson />
+      </View>
+
+    );
+  }
+
+  const ListPerson = () => listElements.map( person => {
+    return(
+    <Text >{person} </Text>
+    );
+  })
+
+  
 
   return (
+    <>
+    <Greetings someText ="con Ruben y David "/>
+    
     <View style={styles.container}>
-      <Greetings someText ="con Ruben y David "/>
       <Switch
         trackColor={{ false: '#767577', true: '#81b0ff' }}
         thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
@@ -24,21 +56,22 @@ export default function App() {
       style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
       onChangeText={text => onChangeText(text)}
       value={value}
-    />
+      />
+      <Button 
+      title="Press me"
+      color="#f194ff"
+      onPress={valueButton}
+      />
     </View>
+    </>
   );
 }
 
 function AddingText(someText){
-  return someText + 'de dsipositivos móviles';
+  return someText + 'de dsipositivos móviles ! Con los alumnos:';
 }
 
-const Greetings = (props) => {
-  var styleText = styles.textColorRed;
-  return(
-  <Text style={styleText}>Bienvenidos a la Clase {AddingText(props.someText)} !</Text>
-  );
-}
+
 
 const styles = StyleSheet.create({
   container: {
@@ -48,7 +81,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   textColorRed:{
-    alignItems: 'right',
     color: '#FF0000',
   },
   textColorYellow:{

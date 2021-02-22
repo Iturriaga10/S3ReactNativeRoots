@@ -12,7 +12,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Greetings />
       <Switch
         trackColor={{ false: '#767577', true: '#81b0ff' }}
         thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
@@ -29,11 +29,28 @@ export default function App() {
   );
 }
 
+const Greetings = () => {
+  var textColor = styles.textColorRed;
+  if (true) {
+    var textColor = styles.textColorYellow;
+  }
+  
+  return(
+  <Text style={textColor}>Bienvenidos a la Clase!</Text>
+  );
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  textColorRed:{
+    color: '#FF0000',
+  },
+  textColorYellow:{
+    color: '#FFFF00',
   },
 });

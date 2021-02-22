@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   textColorRed:{
+    alignItems: 'right',
     color: '#FF0000',
   },
   textColorYellow:{

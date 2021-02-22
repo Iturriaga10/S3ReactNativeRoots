@@ -34,8 +34,9 @@ function AddingText(someText){
 }
 
 const Greetings = (props) => {
+  var styleText = styles.textColorRed;
   return(
-  <Text >Bienvenidos a la Clase {AddingText(props.someText)} !</Text>
+  <Text style={styleText}>Bienvenidos a la Clase {AddingText(props.someText)} !</Text>
   );
 }
 
@@ -48,5 +49,8 @@ const styles = StyleSheet.create({
   },
   textColorRed:{
     color: '#FF0000',
+  },
+  textColorYellow:{
+    color: '#FFFF00',
   },
 });

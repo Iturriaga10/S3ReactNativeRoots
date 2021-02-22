@@ -12,7 +12,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Greetings />
+      <Greetings someText ="con Ruben y David "/>
       <Switch
         trackColor={{ false: '#767577', true: '#81b0ff' }}
         thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
@@ -29,14 +29,13 @@ export default function App() {
   );
 }
 
-const Greetings = () => {
-  var textColor = styles.textColorRed;
-  if (true) {
-    var textColor = styles.textColorYellow;
-  }
-  
+function AddingText(someText){
+  return someText + 'de dsipositivos móviles';
+}
+
+const Greetings = (props) => {
   return(
-  <Text style={textColor}>Bienvenidos a la Clase!</Text>
+  <Text >Bienvenidos a la Clase {AddingText(props.someText)} !</Text>
   );
 }
 
@@ -49,8 +48,5 @@ const styles = StyleSheet.create({
   },
   textColorRed:{
     color: '#FF0000',
-  },
-  textColorYellow:{
-    color: '#FFFF00',
   },
 });

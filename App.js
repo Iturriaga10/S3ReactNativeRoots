@@ -88,17 +88,6 @@ export default function App(props) {
       {Mapeo().map((n, key) => (
         <li key={key}>{n}</li>
       ))}
-
-      
-      {
-      
-      Data.map(
-                dato => 
-                        console.log(dato)
-              )    
-              
-      }
-    
     </View>
   );
 }

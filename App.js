@@ -1,6 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useState, Component } from 'react';
 import { StyleSheet, Text, View, Switch, TextInput, Button } from 'react-native';
+import {Greetings} from './Greetings';
 
 const listElements = ["Juan"];
 
@@ -14,37 +14,44 @@ export default function App() {
   const [list, onChangeList] = React.useState(["Juan"]);
   // Button.
   
-  const valueButton = () => onChangeList(list => listElements.push(value));
+  const valueButton = () => onChangeList([...list, value]);
 
 
   // Array of elements.
-  const Greetings = (props) => {
-    var styleText = styles.textColorRed;
-    if(isEnabled) {
-      var styleText = styles.textColorYellow;
-    }
-    return(
-      <View style={styles.container}>
-        <Text style={styleText}>Bienvenidos a la Clase {AddingText(props.someText)} </Text>
-        <ListPerson />
-      </View>
-
-    );
-  }
+  //const Greetings = (props) => {
+  //  const text = props.someText;
+  //  var styleText = styles.textColorRed;
+  //  if(isEnabled) {
+  //    var styleText = styles.textColorYellow;
+  //  }
+  //  return(
+  //    <View style={styles.container}>
+  //      <Text style={styleText}>Bienvenidos a la Clase {AddingText(text)} </Text>
+  //    </View>
+  //  );
+  //}
 
   const ListPerson = () => listElements.map( person => {
     return(
-    <Text >{person} </Text>
+    <Text key={person} >{person} </Text>
     );
   })
 
-  
+  //const ListPerson2 = () =>  {
+  //  return(
+      
+  //  );
+  //}
 
   return (
     <>
-    <Greetings someText ="con Ruben y David "/>
+    <Greetings someText="con Ruben y David " switchEneabled={isEnabled}/> 
     
     <View style={styles.container}>
+      {/* <ListPerson /> */}
+      { list.map(item => (
+        <Text key={item} >{item} </Text>
+      ))}
       <Switch
         trackColor={{ false: '#767577', true: '#81b0ff' }}
         thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
@@ -58,19 +65,14 @@ export default function App() {
       value={value}
       />
       <Button 
-      title="Press me"
-      color="#f194ff"
-      onPress={valueButton}
+        title="Add"
+        color="#f194ff"
+        onPress={valueButton}
       />
     </View>
     </>
   );
 }
-
-function AddingText(someText){
-  return someText + 'de dsipositivos móviles ! Con los alumnos:';
-}
-
 
 
 const styles = StyleSheet.create({

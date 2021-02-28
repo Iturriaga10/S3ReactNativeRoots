@@ -30,9 +30,9 @@ export default function App() {
 }
 
 const Greetings = () => {
-  var textColor = styles.textColorRed;
+  const textColor = styles.textColorRed;
   if (true) {
-    var textColor = styles.textColorYellow;
+    const textColor = styles.textColorYellow;
   }
   
   return(

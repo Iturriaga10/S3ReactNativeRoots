@@ -13,6 +13,13 @@ export default function App(props) {
   const [value, onChangeText] = useState("Anonimus");
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
 
+  // simple conditional
+  if (!isEnabled) {
+    console.log("iniciando: off");
+  } else {
+    console.log("iniciando: on");
+  }
+
   // Text Inputs Variables.
 
   //especial function
@@ -33,6 +40,23 @@ export default function App(props) {
     return <GuestGreeting />;
   }
 
+  function handleKeyDown(e) {
+    if (e.nativeEvent.key == "Enter") {
+      updateMyArray((prevItems) => [
+        ...prevItems,
+        {
+          id: prevItems.length,
+          value: getRandomNumber(),
+          newValue: newValue,
+        },
+      ]);
+    }
+  }
+
+  const getRandomNumber = () => {
+    return Math.random().toString().substring(2, 8);
+  };
+
   //especial function
   function SimpleGreeting(params) {
     return (
@@ -47,6 +71,36 @@ export default function App(props) {
       <Greeting />
 
       <SimpleGreeting logged={"Ruben"} />
+
+      <Switch
+        trackColor={{ false: "#767577", true: "#81b0ff" }}
+        thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+        ios_backgroundColor="#3e3e3e"
+        onValueChange={toggleSwitch}
+        value={isEnabled}
+      />
+
+      <TextInput
+        style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
+        onChangeText={(text) => onChangeText(text)}
+        value={value}
+      />
+
+      <p>{JSON.stringify(numbers, null, 2)}</p>
+
+      {numbers.map((e, key) => (
+        <li key={key}>{e.value}</li>
+      ))}
+
+      <TextInput
+        style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
+        onChangeText={(value) => onChange(value)}
+        keyboardType="default"
+        returnKeyType="done"
+        onKeyPress={handleKeyDown}
+        placeholder="Enter text here..."
+        autoFocus={true}
+      />
     </View>
   );
 }
